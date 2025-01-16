@@ -17,16 +17,12 @@ def index():
             data = json.load(file)
         
         rates = data.get("conversion_rates", {})
-        
-        # Create a dictionary of currency codes and their full names
-        currencies = {code: info['name'] for code, info in rates.items()}
-        
-        # Debug: Print the currencies to ensure they are correct
-        print("Currencies:", currencies)
+        ## print(rates) ##debugging code
+        # Create a list of currency codes
+        currencies = list(rates.keys())
         
         return render_template('index.html', currencies=currencies)
     except Exception as e:
-        print("Error reading data from JSON file:", e)
         return f"Error reading data from JSON file: {e}", 500
 
 # Conversion Route
@@ -57,8 +53,7 @@ def convert():
                                to_currency=to_currency,
                                converted_amount=round(converted_amount, 2))
     except Exception as e:
-        print("Error during conversion:", e)
         return f"Error during conversion: {e}", 500
 
 if __name__ == "__main__":
-    app.run(debug=True,port=8000)
+    app.run(debug=True, port=8000)
