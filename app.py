@@ -6,7 +6,7 @@ import json
 app = Flask(__name__)
 
 # Constants
-JSON_FILE = 'exchange_rates.json'
+JSON_FILE = 'data.json'
 
 # Homepage Route
 @app.route('/')
@@ -61,4 +61,4 @@ def convert():
         return f"Error during conversion: {e}", 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=8000)
