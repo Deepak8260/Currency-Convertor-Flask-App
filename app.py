@@ -20,6 +20,7 @@ def index():
         ## print(rates) ##debugging code
         # Create a list of currency codes
         currencies = list(rates.keys())
+        #print(currencies) ##debugging code
         
         return render_template('index.html', currencies=currencies)
     except Exception as e:
